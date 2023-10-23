@@ -1,0 +1,25 @@
+.header {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    background-color: rgb(59, 59, 59);
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+}
+
+.logoContainer {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+    color: #fff;
+}
+
+a {
+    font-size: 18px;
+    margin-left: 20px;
+    color: #fff;
+    text-decoration: none;
+}
