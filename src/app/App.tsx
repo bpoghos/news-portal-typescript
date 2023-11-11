@@ -1,11 +1,14 @@
-import React, { Suspense, lazy } from 'react'
+import React, { Suspense, lazy, useEffect, useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { onAuthStateChanged, signOut, User } from 'firebase/auth'
 
-import 'styles/index.scss'
+import 'app/styles/index.scss'
 
 import Header from 'components/Header'
 import Loading from 'components/Loading'
-import useTheme from 'theme/useTheme'
+import { useTheme } from './providers/ThemeProvider'
+import Modal from 'components/Modal'
+import { auth } from '../firebase'
 
 const MainPage = lazy(() => import('pages/MainPage'))
 const AboutPage = lazy(() => import('pages/AboutPage'))
@@ -15,6 +18,20 @@ const NewsPage = lazy(() => import('pages/NewsPage'))
 
 const App: React.FC = () => {
   const { theme } = useTheme();
+  const [user, setUser] = useState<User | null>(null)
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, currentUser => {
+      console.log(currentUser);
+      setUser(currentUser);
+    })
+
+    return unsubscribe;
+  }, [])
+
+  const handleSingOut = () => {
+    signOut(auth).catch(error => console.log(error))
+  }
 
   const news = [
     {
@@ -69,7 +86,7 @@ const App: React.FC = () => {
   return (
     <BrowserRouter>
       <div className={`app ${theme}`}>
-        <Header items={searchAutocomplite} />
+        <Header items={searchAutocomplite} handleSingOut={handleSingOut} user={user} />
 
         <Suspense fallback={<Loading />}>
           <Routes>
@@ -79,6 +96,11 @@ const App: React.FC = () => {
             <Route path='/' element={<MainPage news={news} />} />
           </Routes>
         </Suspense>
+
+        {/* <Modal>
+          <h1>Login</h1>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos fugiat voluptatibus ipsum deserunt vel fugit iure. Quidem ex similique quam atque voluptates labore voluptate quae dolorem, beatae, veritatis mollitia! Adipisci.</p>
+        </Modal> */}
       </div>
     </BrowserRouter>
   )
