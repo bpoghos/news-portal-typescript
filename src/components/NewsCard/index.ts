@@ -1,3 +1,3 @@
-import Card from "./NewsCard";
+import NewsCard from "./NewsCard";
 
-export default Card
+export default NewsCard

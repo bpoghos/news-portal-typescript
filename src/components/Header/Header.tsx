@@ -1,40 +1,67 @@
 import React, { useState } from 'react'
 import styles from './Header.module.css'
-import { FaAngleDown } from 'react-icons/fa6'
+import Search from 'components/Search'
+import { SearchProps } from 'components/Search/Search.interface'
+import { Link } from 'react-router-dom'
+import { FaSun } from "react-icons/fa6";
+import useTheme from 'theme/useTheme'
 
-const Header: React.FC = () => {
+const Header: React.FC<SearchProps> = ({ items }) => {
+  const { toggleTheme } = useTheme();
+  const [isUserMenuOpen, setUserMenuOpen] = useState<boolean>(false)
 
-    const [isOpen, setIsOpen] = useState(false)
+  const toggleUserMenu = (): void => {
+    setUserMenuOpen(!isUserMenuOpen);
+  }
 
+  return (
+    <header className={styles.header}>
+      <nav className={styles.menu}>
+        <ul className={styles.mainMenu}>
+          <li>
+            <Link to='/'>Home</Link>
+          </li>
+          <li>
+            <Link to='/about'>About</Link>
+          </li>
+          <li>
+            <Link to='/contact'>Contact</Link>
+          </li>
+        </ul>
 
+        <Search items={items} />
 
-    return (
-        <header className={styles.header}>
-            <nav className={styles.menu}>
+        <button onClick={toggleTheme}><FaSun /></button>
+
+        <div className={styles.userContainer}>
+          <img
+            src="https://avatars.githubusercontent.com/u/98681?v=4"
+            alt="user name"
+            className={styles.userImage}
+            onClick={toggleUserMenu}
+          />
+
+          {
+            isUserMenuOpen ? (
+              <div className={styles.userMenu}>
                 <ul>
-                    <li>
-                        <a href='#'>Home</a>
-                    </li>
-                    <li>
-                        <a href='#'>About</a>
-                    </li>
-                    <li>
-                        <a href='#'>Contact</a>
-                    </li>
+                  <li>
+                    <a href='#'>Profile</a>
+                  </li>
+                  <li>
+                    <a href='#'>Settings</a>
+                  </li>
+                  <li>
+                    <a href='#'>Sign Out</a>
+                  </li>
                 </ul>
-                <div className={styles.profileBox} onClick={() => setIsOpen((prevState) => !prevState)}><div className={styles.profile}></div><FaAngleDown /></div>
-                {isOpen ?
-                    <div className={styles.profileMenu}>
-                        <ul>
-                            <li>Profile</li>
-                            <li>Settings</li>
-                            <li>Sign out</li>
-                        </ul>
-                    </div> : null
-                }
-            </nav>
-        </header>
-    )
+              </div>
+            ) : null
+          }
+        </div>
+      </nav>
+    </header>
+  )
 }
 
 export default Header

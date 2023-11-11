@@ -1,8 +1,7 @@
 import React from 'react'
 import styles from './NewsCard.module.css'
 import { NewsCardProps } from './NewsCard.interface'
-
-
+import { Link } from 'react-router-dom'
 
 const NewsCard: React.FC<NewsCardProps> = ({ id, title, content, image, publishDate }) => {
   return (
@@ -11,8 +10,9 @@ const NewsCard: React.FC<NewsCardProps> = ({ id, title, content, image, publishD
       <h2>{title}</h2>
       <p>{content}</p>
       <p className={styles.date}>Published on: {publishDate}</p>
-      <a href='#' className={styles.read_more}>Read more</a>
+      <Link to={`/article/${id}`} className={styles.read_more}>Read more</Link>
     </div>
   )
 }
+
 export default NewsCard
