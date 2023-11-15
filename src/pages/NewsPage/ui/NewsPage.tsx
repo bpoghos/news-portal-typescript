@@ -1,6 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { NewsListProps } from '../../../components/NewsList/NewsList.interface';
+import Comments from 'components/Comments';
 
 const NewsPage: React.FC<NewsListProps> = ({ news }) => {
   const { id } = useParams();
@@ -27,6 +28,7 @@ const NewsPage: React.FC<NewsListProps> = ({ news }) => {
         <p>{article?.content}</p>
         <span>{article?.publishDate}</span>
       </div>
+      <Comments news={news} />
     </div>
   )
 }

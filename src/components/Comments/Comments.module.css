@@ -1,0 +1,62 @@
+.commentsComponent {
+    width: 800px;
+    min-height: 400px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+    box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    padding: 20px;
+}
+
+.commentsComponent h2 {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #d2d2d2;
+}
+
+.user {
+    margin-top: 20px;
+    display: flex;
+}
+
+
+.userPhoto {
+    width: 45px;
+    height: 45px;
+    background-color: black;
+}
+
+.user img {
+    width: 100%;
+    height: 100%;
+}
+
+.commentBox {}
+
+.userInfo {
+    display: flex;
+}
+
+.userInfo p {
+    margin-right: 10px;
+    margin-left: 15px;
+    font-weight: 700;
+}
+
+.userInfo span {
+    color: #969696;
+    font-size: 14px;
+}
+
+.userComment {
+    margin-left: 15px;
+}
+
+.replyBtn {
+    margin-left: 15px;
+    text-decoration: none;
+    font-size: 14px;
+    color: #969696;
+}
+
+.replyBtn:hover {
+    color: #484848;
+}

@@ -39,7 +39,52 @@ const App: React.FC = () => {
       title: 'New title 1',
       content: 'News Content 1',
       image: 'https://images.unsplash.com/photo-1631771970274-d7f0442bd28b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDExfHx8ZW58MHx8fHx8&w=1000&q=80',
-      publishDate: (new Date().toDateString())
+      publishDate: (new Date().toDateString()),
+      comments: [
+        {
+          id: 1,
+          author: {
+            id: 23,
+            name: "Esim Esiminchyan",
+            image: "...",
+          },
+          text: "comment text",
+          date: (new Date().toDateString()),
+          replay: []
+        },
+        {
+          id: 2,
+          author: {
+            id: 12,
+            name: "John S.",
+            image: "...",
+          },
+          text: "comment text 2",
+          date: (new Date().toDateString()),
+          replay: [
+            {
+              id: 1,
+              author: {
+                id: 26,
+                name: "Mike M.",
+                image: "...",
+              },
+              text: "replyed comment text",
+              date: (new Date().toDateString()),
+            },
+            {
+              id: 2,
+              author: {
+                id: 34,
+                name: "Esim Inch",
+                image: "...",
+              },
+              text: "replyed comment text",
+              date: (new Date().toDateString()),
+            }
+          ]
+        },
+      ]
     },
     {
       id: 2,

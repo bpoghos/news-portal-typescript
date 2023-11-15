@@ -6,15 +6,17 @@ import { NewsCardProps } from '../NewsCard/NewsCard.interface'
 
 const NewsList: React.FC<NewsListProps> = ({ news }) => {
   return (
-    <div className={styles.list}>
+    <>
+      <div className={styles.list}>
 
-      {
-        news.map((item: NewsCardProps) => 
-          <div className={styles.card} key={item.id}><NewsCard {...item} /></div>
-        )
-      }
+        {
+          news.map((item: NewsCardProps) =>
+            <div className={styles.card} key={item.id}><NewsCard {...item} /></div>
+          )
+        }
 
-    </div>
+      </div>
+    </>
   )
 }
 

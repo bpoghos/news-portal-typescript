@@ -1,3 +1,5 @@
+import { NewsListProps } from "components/NewsList/NewsList.interface";
+
 
 export interface NewsCardProps {
   id: number;
@@ -5,4 +7,5 @@ export interface NewsCardProps {
   content: string;
   image: string;
   publishDate: string;
+
 }
